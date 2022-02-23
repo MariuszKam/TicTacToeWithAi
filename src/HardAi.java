@@ -1,4 +1,4 @@
-public class MediumAi extends TicTacToe {
+public class HardAi extends TicTacToe {
     @Override
     public void printGrid() {
         super.printGrid();
@@ -6,12 +6,12 @@ public class MediumAi extends TicTacToe {
 
     @Override
     public void moveX(String level) {
-        super.moveX(level);
+        super.moveX("hard");
     }
 
     @Override
     public void moveO(String level) {
-        super.moveO(level);
+        super.moveO("hard");
     }
 
     @Override
@@ -21,9 +21,11 @@ public class MediumAi extends TicTacToe {
             if (Menu.players[1].equals("user")) {
                 getX();
             } else if(Menu.players[1].equals("easy")) {
-                moveX("easy");
+                super.moveX("easy");
+            } else if(Menu.players[1].equals("medium")){
+                super.moveX("medium");
             } else {
-                moveX("medium");
+                moveX("hard");
             }
             printGrid();
             if(checkStatus()) {
@@ -32,26 +34,13 @@ public class MediumAi extends TicTacToe {
             if(Menu.players[2].equals("user")) {
                 getO();
             } else if(Menu.players[2].equals("easy")) {
-                moveO("easy");
+                super.moveO("easy");
+            } else if(Menu.players[2].equals("medium")) {
+                super.moveO("medium");
             } else {
-                moveO("medium");
+                moveX("hard");
             }
             printGrid();
         }
-    }
-
-    @Override
-    protected boolean checkDoubleO() {
-        return super.checkDoubleO();
-    }
-
-    @Override
-    protected boolean checkDoubleX() {
-        return super.checkDoubleX();
-    }
-
-    @Override
-    protected NextMove setMove() {
-        return super.setMove();
     }
 }
