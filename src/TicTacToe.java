@@ -65,7 +65,7 @@ public abstract class TicTacToe {
     }
 
     public void moveO(String level) {
-        if (level.equals("easy")) {
+        if(level.equals("easy")) {
             boolean move = false;
             Random random = new Random();
             System.out.println("Making move level \"" + level + "\"");
@@ -300,6 +300,35 @@ public abstract class TicTacToe {
             }
         }
         return NextMove.RANDOM;
+    }
+    //Hard ai
+    protected char checkWinner() {
+        String diagonalOne = "" + matrix[0][0] + matrix[1][1] + matrix[2][2];
+        String diagonalTwo = "" + matrix[0][2] + matrix[1][1] + matrix[2][0];
+        int countDraw = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            String checkRow = "";
+            String checkCol = "";
+            for (int j = 0; j < matrix[i].length; j++) {
+                checkRow = checkRow + matrix[i][j];
+                checkCol = checkCol + matrix[j][i];
+                if (checkRow.equals("XXX") || checkCol.equals("XXX")) {
+                    return 'X';
+                } else if (checkRow.equals("OOO") || checkCol.equals("OOO")) {
+                    return 'O';
+                } else if (diagonalOne.equals("XXX") || diagonalTwo.equals("XXX")) {
+                    return 'X';
+                } else if (diagonalOne.equals("OOO") || diagonalTwo.equals("OOO")) {
+                    return 'O';
+                } else if (matrix[i][j] == 'X' || matrix[i][j] == 'O') {
+                    ++countDraw;
+                    if (countDraw == 9) {
+                        return 't';
+                    }
+                }
+            }
+        }
+        return 'n';
     }
 
 }
